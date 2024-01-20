@@ -1,0 +1,6 @@
+@mshop.discounts.api_HostAddress = http://localhost:5022
+
+GET {{mshop.discounts.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
