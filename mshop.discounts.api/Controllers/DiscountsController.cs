@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using mshop.discounts.application.Commands.Discounts;
+using mshop.discounts.application.Commands.Discounts.CalculateDiscount;
+using mshop.discounts.application.Commands.Discounts.CreateDiscount;
 using mshop.discounts.application.DTOs.Discounts;
 
 namespace mshop.discounts.api.Controllers
@@ -17,11 +18,18 @@ namespace mshop.discounts.api.Controllers
         }
 
         [HttpPost("Calculate")]
-        [ProducesResponseType(200, Type = typeof(ReadDiscountDto))]
+        [ProducesResponseType(200, Type = typeof(ReadCalculatedDiscountDto))]
         public async Task<IActionResult> CalculateDiscount([FromBody] CalculateDiscountDto calculateDiscountDto)
         {
             await _mediator.Send(new CalculateDiscountCommand(calculateDiscountDto));
-            return Ok(new ReadDiscountDto());
+            return Ok(new ReadCalculatedDiscountDto());
+        }
+
+        [HttpPost("")]
+        public async Task<IActionResult> CreateDiscount([FromBody] CreateDiscountDto discountDto)
+        {
+            await _mediator.Send(new CreateDiscountCommand(discountDto));
+            return Ok();
         }
     }
 }

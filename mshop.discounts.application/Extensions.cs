@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using mshop.discounts.application.Mapper;
 
 namespace mshop.discounts.application
 {
@@ -13,7 +15,12 @@ namespace mshop.discounts.application
                 .AddMediatR(configuration =>
                 {
                     configuration.RegisterServicesFromAssemblies(assembly);
-                }); ;
+                })
+                .AddScoped(provider => new MapperConfiguration(cfg =>
+                {
+                    var scope = provider.CreateScope();
+                    cfg.AddProfile(new DiscountProfile());
+                }).CreateMapper());
         }
     }
 }

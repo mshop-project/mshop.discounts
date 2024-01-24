@@ -1,13 +1,12 @@
 ﻿using mshop.discounts.domain.Enums;
 
-namespace mshop.discounts.domain.Entities
+namespace mshop.discounts.application.DTOs.Discounts
 {
-    public class Discount
+    public class CreateDiscountDto
     {
-        public Guid Id { get; set; }
         public string? Name { get; set; }
-        public int? MinimumNumberOrdersPerUser {  get; set; }
-        public Guid? CategoryId { get; set; }   
+        public int? MinimumNumberOrdersPerUser { get; set; }
+        public Guid? CategoryId { get; set; }
         public int? MinimumNumberProductsPerCategory { get; set; }
         public DiscountType DiscountType { get; set; }
     }

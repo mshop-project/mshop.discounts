@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mshop.discounts.application.DTOs.Discounts
 {
-    public class ReadDiscountDto
+    public class ReadCalculatedDiscountDto
     {
         public int Discount { get; set; } = 25;
     }

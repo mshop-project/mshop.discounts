@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mshop.discounts.application.Commands.Discounts
+namespace mshop.discounts.application.Commands.Discounts.CalculateDiscount
 {
-    internal class CalculateDiscountHandler : IRequestHandler<CalculateDiscountCommand, ReadDiscountDto>
+    internal class CalculateDiscountHandler : IRequestHandler<CalculateDiscountCommand, ReadCalculatedDiscountDto>
     {
         private readonly IProductsServiceClient _productsService;
 
@@ -18,7 +18,7 @@ namespace mshop.discounts.application.Commands.Discounts
             _productsService = productsService;
         }
 
-        public async Task<ReadDiscountDto> Handle(CalculateDiscountCommand request, CancellationToken cancellationToken)
+        public async Task<ReadCalculatedDiscountDto> Handle(CalculateDiscountCommand request, CancellationToken cancellationToken)
         {
             await _productsService.GetProductsByIdsAsync(request.CalculateDiscountDto.ProductIds);
             return null;

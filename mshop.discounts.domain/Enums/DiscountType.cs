@@ -1,4 +1,4 @@
-﻿namespace mshop.discounts.domain.Enum
+﻿namespace mshop.discounts.domain.Enums
 {
     public enum DiscountType
     {
