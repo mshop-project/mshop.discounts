@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using mshop.discounts.application.Services.Clients;
+using mshop.discounts.infrastructure.Persistence;
 using mshop.discounts.infrastructure.Services.Clients.Products;
 
 namespace mshop.discounts.infrastructure
@@ -10,6 +12,7 @@ namespace mshop.discounts.infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             return services
+                .AddDbContext<DiscountsDbContext>()
                 .AddTransient<IProductsServiceClient, ProductsServiceClient>();
         }
     }
