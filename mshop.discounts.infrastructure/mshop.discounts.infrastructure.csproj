@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\mshop.discounts.application\mshop.discounts.application.csproj" />
     <ProjectReference Include="..\mshop.discounts.domain\mshop.discounts.domain.csproj" />
   </ItemGroup>
 

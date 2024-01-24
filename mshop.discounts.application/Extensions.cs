@@ -6,7 +6,14 @@ namespace mshop.discounts.application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            return services;
+            var assembly = typeof(Extensions).Assembly;
+
+            return services
+                .AddSingleton<HttpClient>()
+                .AddMediatR(configuration =>
+                {
+                    configuration.RegisterServicesFromAssemblies(assembly);
+                }); ;
         }
     }
 }
