@@ -39,6 +39,9 @@ namespace mshop.discounts.infrastructure.Persistence
                 entity.Property(d => d.MinimumNumberProductsPerCategory);
 
                 entity.Property(d => d.DiscountType);
+
+                entity.Property(d => d.DiscountPercentValue)
+                    .IsRequired();
             });
         }
     }

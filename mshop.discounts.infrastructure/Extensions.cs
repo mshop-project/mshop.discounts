@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using mshop.discounts.application.Services.Clients;
+using mshop.discounts.application.Services.Clients.Orders;
+using mshop.discounts.application.Services.Clients.Products;
 using mshop.discounts.domain.Repositories;
 using mshop.discounts.infrastructure.Persistence;
 using mshop.discounts.infrastructure.Repositories;
+using mshop.discounts.infrastructure.Services.Clients.Orders;
 using mshop.discounts.infrastructure.Services.Clients.Products;
 
 namespace mshop.discounts.infrastructure
@@ -15,6 +17,7 @@ namespace mshop.discounts.infrastructure
             return services
                 .AddDbContext<DiscountsDbContext>()
                 .AddTransient<IProductsServiceClient, ProductsServiceClient>()
+                .AddTransient<IOrdersServiceClient, OrdersServiceClient>()
                 .AddScoped<IDiscountsRepository, DiscountsRepository>();
         }
     }

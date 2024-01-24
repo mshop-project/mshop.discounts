@@ -21,8 +21,8 @@ namespace mshop.discounts.api.Controllers
         [ProducesResponseType(200, Type = typeof(ReadCalculatedDiscountDto))]
         public async Task<IActionResult> CalculateDiscount([FromBody] CalculateDiscountDto calculateDiscountDto)
         {
-            await _mediator.Send(new CalculateDiscountCommand(calculateDiscountDto));
-            return Ok(new ReadCalculatedDiscountDto());
+            var result = await _mediator.Send(new CalculateDiscountCommand(calculateDiscountDto));
+            return Ok(result);
         }
 
         [HttpPost("")]

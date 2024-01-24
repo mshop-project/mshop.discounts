@@ -1,5 +1,5 @@
-﻿using mshop.discounts.application.DTOs.Clients.Products;
-using mshop.discounts.application.Services.Clients;
+﻿using mshop.discounts.application.Services.Clients.Products;
+using mshop.discounts.domain.models.Clients.Products;
 using System.Net.Http.Json;
 
 namespace mshop.discounts.infrastructure.Services.Clients.Products
@@ -13,8 +13,10 @@ namespace mshop.discounts.infrastructure.Services.Clients.Products
             _httpClient = httpClient;
         }
 
-        public async Task GetProductsByIdsAsync(IEnumerable<Guid> ids)
+        public async Task<IEnumerable<Product>> GetProductsByIdsAsync(IEnumerable<Guid> ids)
         {
+            List<Product>? productList = new();
+
             string productsApiUrl = "https://localhost:7158/Products/Ids"; 
 
             string queryParameters = string.Join("&", ids.Select(id => $"ids={id}"));
@@ -24,8 +26,10 @@ namespace mshop.discounts.infrastructure.Services.Clients.Products
 
             if (response.IsSuccessStatusCode)
             {
-                List<ReadProductDto>? productList = await response.Content.ReadFromJsonAsync<List<ReadProductDto>>();
+                productList = await response.Content.ReadFromJsonAsync<List<Product>>();
             }
+
+            return productList;
         }
     }
 }

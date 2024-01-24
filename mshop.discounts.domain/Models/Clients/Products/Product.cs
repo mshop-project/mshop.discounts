@@ -1,14 +1,14 @@
-﻿using mshop.discounts.application.DTOs.Clients.Categories;
+﻿using mshop.discounts.domain.models.Clients.Categories;
 
-namespace mshop.discounts.application.DTOs.Clients.Products
+namespace mshop.discounts.domain.models.Clients.Products
 {
-    public class ReadProductDto
+    public class Product
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string ImageUrl { get; set; } = null!;
         public decimal Price { get; set; }
-        public ReadCategoryDto Category { get; set; } = null!;
+        public Category Category { get; set; } = null!;
     }
 }

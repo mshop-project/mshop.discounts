@@ -10,5 +10,6 @@ namespace mshop.discounts.domain.Entities
         public Guid? CategoryId { get; set; }   
         public int? MinimumNumberProductsPerCategory { get; set; }
         public DiscountType DiscountType { get; set; }
+        public decimal DiscountPercentValue { get; set; }
     }
 }

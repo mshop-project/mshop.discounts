@@ -9,5 +9,6 @@ namespace mshop.discounts.application.DTOs.Discounts
         public Guid? CategoryId { get; set; }
         public int? MinimumNumberProductsPerCategory { get; set; }
         public DiscountType DiscountType { get; set; }
+        public decimal DiscountPercentValue { get; set; }
     }
 }

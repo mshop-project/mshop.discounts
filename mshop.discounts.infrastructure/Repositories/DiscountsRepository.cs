@@ -1,4 +1,6 @@
-﻿using mshop.discounts.domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using mshop.discounts.domain.Entities;
+using mshop.discounts.domain.Enums;
 using mshop.discounts.domain.Repositories;
 using mshop.discounts.infrastructure.Persistence;
 
@@ -11,6 +13,18 @@ namespace mshop.discounts.infrastructure.Repositories
         public DiscountsRepository(DiscountsDbContext discountsDbContext)
         {
             _discountsDbContext = discountsDbContext;
+        }
+
+        public async Task<Discount?> ChooseDiscountAsync(Guid categoryId, int productsCount)
+        {
+            return await _discountsDbContext.Discounts.Where(d => d.DiscountType == DiscountType.ProductsCategories && d.MinimumNumberProductsPerCategory <= productsCount)
+                .OrderByDescending(d => d.DiscountPercentValue).FirstOrDefaultAsync();
+        }
+
+        public async Task<Discount?> ChooseDiscountAsync(int userOrdersCount)
+        {
+            return await _discountsDbContext.Discounts.Where(d => d.DiscountType == DiscountType.UserOrders && d.MinimumNumberOrdersPerUser <= userOrdersCount)
+                .OrderByDescending(d => d.DiscountPercentValue).FirstOrDefaultAsync();
         }
 
         public async Task CreateAsync(Discount discount)
