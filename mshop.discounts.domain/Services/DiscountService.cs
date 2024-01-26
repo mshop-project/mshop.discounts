@@ -33,11 +33,12 @@ namespace mshop.discounts.domain.Services
         private async Task<IEnumerable<Discount>> GetDiscountsForProductsAsync(IEnumerable<Product> products)
         {
             List<Discount> discounts = new();
-            var groupedProducts = products.GroupBy(p => p.Category);
-
-            foreach (var group in groupedProducts)
-            {
-                var disc = await _discountsRepository.ChooseDiscountAsync(group.Key.Id, group.Count());
+            var categories = products.Select(p => p.Category.Id).Distinct();
+            
+            foreach (var categoryId in categories)
+            {            
+                var productsCount = products.Select(p => p.Category.Id == categoryId).Count();
+                var disc = await _discountsRepository.ChooseDiscountAsync(categoryId, productsCount);
                 if (disc is not null)
                     discounts.Add(disc);
             }
