@@ -15,7 +15,7 @@ namespace mshop.discounts.infrastructure.Services.Clients.Orders
 
         public async Task<IEnumerable<Order>> GetOrdersByEmailAsync(string email)
         {
-            List<Order>? orderList = new();
+            List<Order> orderList = new();
 
             string productsApiUrl = $"https://localhost:7269/Order/{email}";
 
@@ -26,7 +26,7 @@ namespace mshop.discounts.infrastructure.Services.Clients.Orders
                 orderList = await response.Content.ReadFromJsonAsync<List<Order>>();
             }
 
-            return orderList;
+            return orderList ?? new();
         }
     }
 }
