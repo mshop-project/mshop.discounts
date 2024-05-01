@@ -1,14 +1,10 @@
-using mshop.discounts.application;
-using mshop.discounts.domain;
-using mshop.discounts.infrastructure;
+using mshop.discounts.api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services
-    .AddInfrastructure(builder.Configuration)
-    .AddApplication()
-    .AddDomain();
+
+builder.Services.AddDiscountExtensions(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
