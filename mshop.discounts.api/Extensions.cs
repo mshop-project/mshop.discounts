@@ -12,7 +12,7 @@ namespace mshop.discounts.api
             return services
                 .AddInfrastructure(configuration)
                 .AddApplication()
-                .AddDomain(); ;
+                .AddDomain();
         }
     }
 }

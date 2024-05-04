@@ -1,9 +1,9 @@
-﻿using mshop.discounts.domain.models.Clients.Orders;
+﻿using mshop.sharedkernel.messaging.Data.Response.Orders;
 
 namespace mshop.discounts.application.Services.Clients.Orders
 {
     public interface IOrdersServiceClient
     {
-        public Task<IEnumerable<Order>> GetOrdersByEmailAsync(string email);
+        public Task<OrdersResponse> GetOrdersByEmailAsync(string email);
     }
 }

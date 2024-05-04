@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using mshop.discounts.domain.Entities;
-using mshop.discounts.domain.Enums;
 using mshop.discounts.domain.Repositories;
 using mshop.discounts.infrastructure.Persistence;
+using mshop.sharedkernel.coredata.Discounts;
+using mshop.sharedkernel.coredata.Discounts.Enums;
 
 namespace mshop.discounts.infrastructure.Repositories
 {

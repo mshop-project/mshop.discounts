@@ -1,5 +1,5 @@
-﻿using mshop.discounts.domain.models.Clients.Orders;
-using mshop.discounts.domain.models.Clients.Products;
+﻿using mshop.sharedkernel.coredata.Orders;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.discounts.domain.Services
 {

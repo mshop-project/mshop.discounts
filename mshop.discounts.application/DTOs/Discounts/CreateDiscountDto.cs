@@ -1,4 +1,4 @@
-﻿using mshop.discounts.domain.Enums;
+﻿using mshop.sharedkernel.coredata.Discounts.Enums;
 
 namespace mshop.discounts.application.DTOs.Discounts
 {

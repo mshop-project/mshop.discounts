@@ -1,7 +1,7 @@
-﻿using mshop.discounts.domain.Entities;
-using mshop.discounts.domain.models.Clients.Orders;
-using mshop.discounts.domain.models.Clients.Products;
-using mshop.discounts.domain.Repositories;
+﻿using mshop.discounts.domain.Repositories;
+using mshop.sharedkernel.coredata.Discounts;
+using mshop.sharedkernel.coredata.Orders;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.discounts.domain.Services
 {

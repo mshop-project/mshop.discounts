@@ -16,8 +16,8 @@ namespace mshop.discounts.infrastructure
         {
             return services
                 .AddDbContext<DiscountsDbContext>()
-                .AddTransient<IProductsServiceClient, ProductsServiceClient>()
-                .AddTransient<IOrdersServiceClient, OrdersServiceClient>()
+                .AddTransient<IProductsServiceClient, ProductsServiceBusClient>()
+                .AddTransient<IOrdersServiceClient, OrdersServiceBusClient>()
                 .AddScoped<IDiscountsRepository, DiscountsRepository>();
         }
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using mshop.discounts.application.DTOs.Discounts;
-using mshop.discounts.domain.Entities;
+using mshop.sharedkernel.coredata.Discounts;
 
 namespace mshop.discounts.application.Mapper
 {

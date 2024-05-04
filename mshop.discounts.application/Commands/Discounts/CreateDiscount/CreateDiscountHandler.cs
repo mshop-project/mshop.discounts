@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using mshop.discounts.domain.Entities;
 using mshop.discounts.domain.Repositories;
+using mshop.sharedkernel.coredata.Discounts;
 
 namespace mshop.discounts.application.Commands.Discounts.CreateDiscount
 {

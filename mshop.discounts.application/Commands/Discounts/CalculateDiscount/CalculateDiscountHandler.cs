@@ -1,10 +1,12 @@
 ﻿using MediatR;
 using mshop.discounts.application.DTOs.Discounts;
-using mshop.discounts.application.Services.Clients.Orders;
 using mshop.discounts.application.Services.Clients.Products;
-using mshop.discounts.domain.models.Clients.Orders;
-using mshop.discounts.domain.models.Clients.Products;
+using mshop.discounts.application.Services.Clients.Orders;
 using mshop.discounts.domain.Services;
+using mshop.sharedkernel.coredata.Products;
+using mshop.sharedkernel.coredata.Orders;
+using mshop.sharedkernel.messaging.Data.Response.Products;
+using mshop.sharedkernel.messaging.Data.Response.Orders;
 
 namespace mshop.discounts.application.Commands.Discounts.CalculateDiscount
 {
@@ -28,9 +30,9 @@ namespace mshop.discounts.application.Commands.Discounts.CalculateDiscount
             var products = await GetProductsAsync(request.CalculateDiscountDto.ProductIds);
             var customerOrders = await GetCustomerOrdersAsync(request.CalculateDiscountDto.CustomerEmail);
 
-            EnsureDataRetrieved(products, customerOrders);
+            EnsureDataRetrieved(products.Products, customerOrders.Orders);
 
-            var discount = await _discountService.CalculateDiscount(products, customerOrders);
+            var discount = await _discountService.CalculateDiscount(products.Products, customerOrders.Orders);
 
             return new ReadCalculatedDiscountDto(discount);
         }
@@ -41,18 +43,18 @@ namespace mshop.discounts.application.Commands.Discounts.CalculateDiscount
                 throw new ArgumentNullException("At least one of ProductIds and CustomerEmail must be provided.");
         }
 
-        private async Task<IEnumerable<Product>> GetProductsAsync(IEnumerable<Guid>? productIds)
+        private async Task<ProductsResponse> GetProductsAsync(IEnumerable<Guid>? productIds)
         {
             return productIds != null
                 ? await _productsServiceClient.GetProductsByIdsAsync(productIds)
-                : Enumerable.Empty<Product>();
+                : new ProductsResponse();
         }
 
-        private async Task<IEnumerable<Order>> GetCustomerOrdersAsync(string? customerEmail)
+        private async Task<OrdersResponse> GetCustomerOrdersAsync(string? customerEmail)
         {
             return customerEmail != null
                 ? await _ordersServiceClient.GetOrdersByEmailAsync(customerEmail)
-                : Enumerable.Empty<Order>();
+                : new OrdersResponse();
         }
 
         private void EnsureDataRetrieved(IEnumerable<Product> products, IEnumerable<Order> customerOrders)

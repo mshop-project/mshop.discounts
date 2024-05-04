@@ -1,9 +1,9 @@
-﻿using mshop.discounts.domain.models.Clients.Products;
+﻿using mshop.sharedkernel.messaging.Data.Response.Products;
 
 namespace mshop.discounts.application.Services.Clients.Products
 {
     public interface IProductsServiceClient
     {
-        public Task<IEnumerable<Product>> GetProductsByIdsAsync(IEnumerable<Guid> ids);
+        public Task<ProductsResponse> GetProductsByIdsAsync(IEnumerable<Guid> ids);
     }
 }

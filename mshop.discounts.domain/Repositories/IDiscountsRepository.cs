@@ -1,4 +1,4 @@
-﻿using mshop.discounts.domain.Entities;
+﻿using mshop.sharedkernel.coredata.Discounts;
 
 namespace mshop.discounts.domain.Repositories
 {
