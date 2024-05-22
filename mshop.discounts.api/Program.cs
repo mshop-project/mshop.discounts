@@ -1,5 +1,7 @@
 using MassTransit;
 using mshop.discounts.api;
+using mshop.sharedkernel.messaging.Data.Request.Orders;
+using mshop.sharedkernel.messaging.Data.Request.Products;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
 
+    busConfigurator.AddDiscountsBusConfig();
+
     busConfigurator.UsingRabbitMq((context, config) =>
     {
         config.Host("localhost", "/", hostConfigurator =>
@@ -21,6 +25,7 @@ builder.Services.AddMassTransit(busConfigurator =>
 
         config.ConfigureEndpoints(context);
     });
+
 });
 
 builder.Services.AddControllers();

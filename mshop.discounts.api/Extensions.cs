@@ -1,6 +1,9 @@
-﻿using mshop.discounts.application;
+﻿using MassTransit;
+using mshop.discounts.application;
 using mshop.discounts.domain;
 using mshop.discounts.infrastructure;
+using mshop.sharedkernel.messaging.Data.Request.Orders;
+using mshop.sharedkernel.messaging.Data.Request.Products;
 
 
 namespace mshop.discounts.api
@@ -13,6 +16,13 @@ namespace mshop.discounts.api
                 .AddInfrastructure(configuration)
                 .AddApplication()
                 .AddDomain();
+        }
+
+        public static IBusRegistrationConfigurator AddDiscountsBusConfig(this IBusRegistrationConfigurator config)
+        {
+            config.AddRequestClient<GetProductsByIdsRequest>();
+            config.AddRequestClient<GetOrdersByEmailRequest>();
+            return config;
         }
     }
 }
