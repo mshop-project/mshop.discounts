@@ -9,13 +9,15 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["mshop.discounts.api/mshop.discounts.api.csproj", "mshop.discounts.api/"]
-COPY ["mshop.discounts.application/mshop.discounts.application.csproj", "mshop.discounts.application/"]
-COPY ["mshop.discounts.domain/mshop.discounts.domain.csproj", "mshop.discounts.domain/"]
-COPY ["mshop.discounts.infrastructure/mshop.discounts.infrastructure.csproj", "mshop.discounts.infrastructure/"]
-RUN dotnet restore "./mshop.discounts.api/./mshop.discounts.api.csproj"
+COPY ["mshop.discounts/mshop.discounts.api/mshop.discounts.api.csproj", "mshop.discounts/mshop.discounts.api/"]
+COPY ["mshop.discounts/mshop.discounts.application/mshop.discounts.application.csproj", "mshop.discounts/mshop.discounts.application/"]
+COPY ["mshop.sharedkernel.messaging/mshop.sharedkernel.messaging.csproj", "mshop.sharedkernel.messaging/"]
+COPY ["mshop.sharedkernel.coredata/mshop.sharedkernel.coredata.csproj", "mshop.sharedkernel.coredata/"]
+COPY ["mshop.discounts/mshop.discounts.domain/mshop.discounts.domain.csproj", "mshop.discounts/mshop.discounts.domain/"]
+COPY ["mshop.discounts/mshop.discounts.infrastructure/mshop.discounts.infrastructure.csproj", "mshop.discounts/mshop.discounts.infrastructure/"]
+RUN dotnet restore "./mshop.discounts/mshop.discounts.api/mshop.discounts.api.csproj"
 COPY . .
-WORKDIR "/src/mshop.discounts.api"
+WORKDIR "/src/mshop.discounts/mshop.discounts.api"
 RUN dotnet build "./mshop.discounts.api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

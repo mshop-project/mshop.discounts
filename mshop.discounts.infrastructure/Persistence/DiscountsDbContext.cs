@@ -14,7 +14,7 @@ namespace mshop.discounts.infrastructure.Persistence
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Discounts;Username=root;Password=password;");
+            optionsBuilder.UseNpgsql("Host=postgresdb;Port=5432;Database=Discounts;Username=root;Password=password;");
 
         public DbSet<Discount> Discounts { get; set; }
 
